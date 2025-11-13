@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book House - Embu Houses</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f6f9; text-align:center; margin-top:50px; }
+    h2 { color:#2c3e50; }
+    .house-info { margin-bottom:20px; font-weight:bold; color:#34495e; }
+    input, select { padding:10px; width:300px; margin:8px; border:1px solid #ccc; border-radius:5px; }
+    button { background:#27ae60; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; }
+    button:hover { background:#219150; }
+    .confirmation { margin-top:20px; color:#27ae60; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <h2>Book Your House</h2>
+  <p id="houseInfo" class="house-info"></p>
+
+  <input type="text" id="name" placeholder="Your Name"><br>
+  <input type="number" id="age" placeholder="Your Age"><br>
+  <input type="text" id="location" placeholder="Your Location"><br>
+  <select id="duration">
+    <option value="">Select Duration</option>
+    <option value="1 month">1 Month</option>
+    <option value="3 months">3 Months</option>
+    <option value="6 months">6 Months</option>
+    <option value="12 months">12 Months</option>
+  </select><br>
+  <button onclick="submitBooking()">Confirm Booking</button>
+
+  <p id="confirmation" class="confirmation"></p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const houseType = params.get("type");
+    const housePrice = params.get("price");
+    document.getElementById("houseInfo").innerText = "Booking: " + houseType + " at " + housePrice;
+
+    function submitBooking() {
+      let name = document.getElementById("name").value;
+      let age = document.getElementById("age").value;
+      let location = document.getElementById("location").value;
+      let duration = document.getElementById("duration").value;
+
+      if(name && age && location && duration) {
+        document.getElementById("confirmation").innerText =
+          "✅ Booking confirmed for " + name + " (" + age + " yrs) at " + location +
+          ". House: " + houseType + " | Price: " + housePrice + " | Duration: " + duration;
+      } else {
+        alert("Please fill all fields!");
+      }
+    }
+  </script>
+</body>
+</html>

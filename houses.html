@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Houses - Embu</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f6f9; }
+    h2 { text-align:center; color:#2c3e50; }
+    .houses { display:flex; flex-wrap:wrap; justify-content:center; }
+    .house-card {
+      background:white; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      margin:15px; width:240px; text-align:center; padding:15px;
+      transition: transform 0.2s;
+    }
+    .house-card:hover { transform: scale(1.05); }
+    .house-card img { width:100%; height:140px; object-fit:cover; border-radius:6px; }
+    .price { color:#e74c3c; font-weight:bold; }
+    button { background:#27ae60; color:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; margin:5px; }
+    button:hover { background:#219150; }
+
+    /* Modal styling */
+    .modal {
+      display:none; position:fixed; z-index:1; left:0; top:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.5); justify-content:center; align-items:center;
+    }
+    .modal-content {
+      background:white; padding:20px; border-radius:8px; width:300px; text-align:center;
+    }
+    .close { cursor:pointer; color:red; font-weight:bold; float:right; }
+  </style>
+</head>
+<body>
+  <h2>Available Houses in Embu</h2>
+  <div class="houses">
+
+    <!-- House 1: Bedsitter -->
+    <div class="house-card">
+      <img src="images/house1.jpg" alt="Bedsitter">
+      <p>Type: Bedsitter</p>
+      <p class="price">KES 8,000/month</p>
+      <button onclick="showDetails('Bedsitter','1','KES 8,000/month','Available','Kangaru')">See Details</button>
+      <button onclick="book('Bedsitter','KES 8,000/month')">Book</button>
+    </div>
+
+    <!-- House 2: Single Room -->
+    <div class="house-card">
+      <img src="images/house2.jpg" alt="Single Room">
+      <p>Type: Single Room</p>
+      <p class="price">KES 5,000/month</p>
+      <button onclick="showDetails('Single Room','1','KES 5,000/month','Available','Bagik')">See Details</button>
+      <button onclick="book('Single Room','KES 5,000/month')">Book</button>
+    </div>
+
+    <!-- House 3: One Bedroom -->
+    <div class="house-card">
+      <img src="images/house3.jpg" alt="One Bedroom">
+      <p>Type: One Bedroom</p>
+      <p class="price">KES 12,000/month</p>
+      <button onclick="showDetails('One Bedroom','2','KES 12,000/month','Available','G-Town')">See Details</button>
+      <button onclick="book('One Bedroom','KES 12,000/month')">Book</button>
+    </div>
+
+    <!-- House 4: One Bedroom -->
+    <div class="house-card">
+      <img src="images/house4.jpg" alt="One Bedroom">
+      <p>Type: One Bedroom</p>
+      <p class="price">KES 10,000/month</p>
+      <button onclick="showDetails('One Bedroom','2','KES 12,000/month','Not Available','G-Town')">See Details</button>
+      <button onclick="book('One Bedroom','KES 12,000/month')">Book</button>
+    </div>
+
+    <!-- House 5: Two Bedroom -->
+    <div class="house-card">
+      <img src="images/house5.jpg" alt="Two Bedroom">
+      <p>Type: Two Bedroom</p>
+      <p class="price">KES 14,000/month</p>
+      <button onclick="showDetails('Two Bedroom','3','KES 18,000/month','Available','Njukiri')">See Details</button>
+      <button onclick="book('Two Bedroom','KES 18,000/month')">Book</button>
+    </div>
+
+    <!-- House 6: Two Bedroom -->
+    <div class="house-card">
+      <img src="images/house6.jpg" alt="Two Bedroom">
+      <p>Type: Two Bedroom</p>
+      <p class="price">KES 18,000/month</p>
+      <button onclick="showDetails('Two Bedroom','3','KES 18,000/month','Available','Njukiri')">See Details</button>
+      <button onclick="book('Two Bedroom','KES 18,000/month')">Book</button>
+    </div>
+
+    <!-- House 7: Two Bedroom -->
+    <div class="house-card">
+      <img src="images/house7.jpg" alt="Two Bedroom">
+      <p>Type: Two Bedroom</p>
+      <p class="price">KES 16,000/month</p>
+      <button onclick="showDetails('Two Bedroom','3','KES 18,000/month','Not Available','Njukiri')">See Details</button>
+      <button onclick="book('Two Bedroom','KES 18,000/month')">Book</button>
+    </div>
+
+  </div>
+
+  <!-- Modal -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">×</span>
+      <h3 id="modalType"></h3>
+      <p id="modalSlots"></p>
+      <p id="modalPrice"></p>
+      <p id="modalAvailability"></p>
+      <p id="modalLocation"></p>
+    </div>
+  </div>
+
+  <script>
+    function book(type, price) {
+      window.location.href = "book.html?type=" + encodeURIComponent(type) + "&price=" + encodeURIComponent(price);
+    }
+
+    function showDetails(type, slots, price, availability, location) {
+      document.getElementById("modalType").innerText = "Type: " + type;
+      document.getElementById("modalSlots").innerText = "Slots: " + slots;
+      document.getElementById("modalPrice").innerText = "Price: " + price;
+      document.getElementById("modalAvailability").innerText = "Availability: " + availability;
+      document.getElementById("modalLocation").innerText = "Location: " + location;
+      document.getElementById("detailsModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("detailsModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
